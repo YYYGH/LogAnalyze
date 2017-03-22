@@ -1,0 +1,16 @@
+CC = g++
+CFLAGS= -g -Wall -std=c++11
+TARGET=test
+INCLUDES := -I./include/ -I./include/gtest
+SRCS := $(wildcard *.cpp)
+OBJS := $(patsubst %cpp,%o,$(SRCS))
+all:$(TARGET)
+
+$(TARGET):$(OBJS)
+	$(CC) $^ $(CFLAGS) libtest.a -lpthread $(INCLUDES) -o $@
+%.o:%.cpp
+	$(CC) $(CFLAGS)  $(INCLUDES) $(LIARARY) -c $< 
+clean:
+	rm -f *.o 
+
+
